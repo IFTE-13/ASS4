@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curise Booking</title>
+    <title>Cruise Booking</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
@@ -41,7 +41,7 @@
             <h3>Book Ocean Time</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
@@ -114,48 +114,44 @@
     <script>
         const increase = document.getElementById("increase");
         increase.addEventListener("click", function(){
-            items("firstClass", 1, 150);
-            tax(15);
+            items("firstClass", true, 150);
         })
         const decrease = document.getElementById("decrease");
         decrease.addEventListener("click", function(){
-            items("firstClass", -1, -150);
-            tax(-15);
+            items("firstClass", false, -150);
         })
         const increment = document.getElementById("increment");
         increment.addEventListener("click", function(){
-            items("secondClass", 1, 100);
-            tax(10);
+            items("secondClass", true, 100);
             }
         )
         const decrement = document.getElementById("decrement");
         decrement.addEventListener("click", function(){
-            items("secondClass", -1, -100);
-            tax(-10);
+            items("secondClass", false, -100);
         }
         )
         function items(id, change, num){
             const type = document.getElementById(id).value;
             const price = parseFloat(type);
-            const finalPrice = price + change;
-            document.getElementById(id).value = finalPrice;
+            let newPrice = price;
+            if(change == true){
+                newPrice = price + 1;
+            }
+            if(change == false && price > 0){
+                newPrice = price - 1;
+            }
+            
+            document.getElementById(id).value = newPrice;
 
             const subTotal = document.getElementById("subTotal").innerText;
             const subtotal = parseFloat(subTotal);
-            const total = subtotal + num;
+            const total = (subtotal + num);
             document.getElementById("subTotal").innerText = total; 
 
-            const finalTotal = document.getElementById("finalTotal");
-            const finalTotalCharge = parseFloat(finalTotal);
-            const finalValue = total;
-            document.getElementById("finalTotal").innerText = total + (total*0.1);
-        }
-
-        function tax(num){
-            const tax = document.getElementById("tax").innerText;
-            const totalTax = parseFloat(tax);
-            const finalTax = totalTax + num;
+            const finalTax = total * 0.1;
             document.getElementById("tax").innerText = finalTax;
+
+            document.getElementById("finalTotal").innerText = total + finalTax;
         }
 
         const submitBtn = document.getElementById("submitBtn");
