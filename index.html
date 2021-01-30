@@ -77,7 +77,7 @@
                 <div>
                     <label for="">Economy ($100)</label>
                     <div class="d-flex justify-content-center">
-                        <input id="secondClass" class="inp-style inp-width" type="text" name="" value="0">
+                        <input id="economyClass" class="inp-style inp-width" type="text" name="" value="0">
                         <button id="increment" class="btn btn-default m-1 mt-2 mb-2 p-2"><i
                                 class="fas fa-plus-square"></i></button>
                         <button id="decrement" class="btn btn-default m-1 mt-2 mb-2 p-2"><i
@@ -129,12 +129,12 @@
         })
         const increment = document.getElementById("increment");
         increment.addEventListener("click", function () {
-            type("secondClass", true, 100);
+            type("economyClass", true, 100);
         }
         )
         const decrement = document.getElementById("decrement");
         decrement.addEventListener("click", function () {
-            type("secondClass", false, 100);
+            type("economyClass", false, 100);
         }
         )
        function type(id, value, num){
@@ -153,17 +153,17 @@
        }
 
        function priceTotal(){
-       const first = document.getElementById("firstClass").value;
-       const firstCount = parseFloat(first);
-       const second = document.getElementById("secondClass").value;
-       const secondCount = parseFloat(second);
-       const final = firstCount * 150 + secondCount * 100;
+       const firstClass = document.getElementById("firstClass").value;
+       const firstCount = parseFloat(firstClass);
+       const economyClass = document.getElementById("economyClass").value;
+       const secondCount = parseFloat(economyClass);
+       const final = firstCount * 150 + economyClass * 100;
        document.getElementById("subTotal").innerText = final;
 
        const tax = document.getElementById("subTotal").innerText;
-       const taxCount = tax * 0.1;
-       document.getElementById("tax").innerText = taxCount;
-       document.getElementById("finalTotal").innerText = final + taxCount;
+       const taxTotal = tax * 0.1;
+       document.getElementById("tax").innerText = taxTotal;
+       document.getElementById("finalTotal").innerText = final + taxTotal;
        }
 
         const submitBtn = document.getElementById("submitBtn");
