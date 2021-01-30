@@ -145,13 +145,20 @@
             
             const subTotal = document.getElementById("subTotal").innerText;
             const subtotal = parseFloat(subTotal);
-            const total = subtotal + (num * newPrice); 
-            document.getElementById("subTotal").innerText = total; 
+            const total = subtotal + num; 
+            if(total<0){
+                document.getElementById("subTotal").innerText = "0";
+                document.getElementById("finalTotal").innerText = "0";
+            }
+            else{
+                document.getElementById("subTotal").innerText = total;
+                const finalTax = total * 0.1;
+                document.getElementById("tax").innerText = finalTax;
+                document.getElementById("finalTotal").innerText = total + finalTax;
+            }
+            
 
-            const finalTax = total * 0.1;
-            document.getElementById("tax").innerText = finalTax;
-
-            document.getElementById("finalTotal").innerText = total + finalTax;
+           
         }
 
         const submitBtn = document.getElementById("submitBtn");
