@@ -61,7 +61,7 @@
                 <div>
                     <label for="">First Class ($150)</label>
                     <div class="d-flex justify-content-start">
-                    <input id="firstClass" class="inp-style inp-width" type="number" name="" value="0">
+                    <input id="firstClass" class="inp-style inp-width" type="text" name="" value="0">
                     <button id="increase" class="btn btn-default m-1 mt-2 mb-2 p-2"><i class="fas fa-plus-square"></i></button>
                     <button id="decrease" class="btn btn-default m-1 mt-2 mb-2 p-2"><i class="far fa-minus-square"></i></button>
                     </div>
@@ -73,7 +73,7 @@
                 <div>
                     <label for="">Economy ($100)</label>
                     <div class="d-flex justify-content-center">
-                    <input id="secondClass" class="inp-style inp-width" type="number" name="" value="0">
+                    <input id="secondClass" class="inp-style inp-width" type="text" name="" value="0">
                     <button id="increment" class="btn btn-default m-1 mt-2 mb-2 p-2"><i class="fas fa-plus-square"></i></button>
                     <button id="decrement" class="btn btn-default m-1 mt-2 mb-2 p-2"><i class="far fa-minus-square"></i></button>
                     </div>
@@ -142,10 +142,10 @@
             }
             
             document.getElementById(id).value = newPrice;
-
+            
             const subTotal = document.getElementById("subTotal").innerText;
             const subtotal = parseFloat(subTotal);
-            const total = (subtotal + num);
+            const total = subtotal + (num * newPrice); 
             document.getElementById("subTotal").innerText = total; 
 
             const finalTax = total * 0.1;
