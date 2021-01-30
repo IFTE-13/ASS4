@@ -120,24 +120,24 @@
     <script>
         const increase = document.getElementById("increase");
         increase.addEventListener("click", function () {
-            type("firstClass", true, 150);
+            type("firstClass", true);
         })
 
         const decrease = document.getElementById("decrease");
         decrease.addEventListener("click", function () {
-             type("firstClass", false, 150);
+             type("firstClass", false);
         })
         const increment = document.getElementById("increment");
         increment.addEventListener("click", function () {
-            type("economyClass", true, 100);
+            type("economyClass", true);
         }
         )
         const decrement = document.getElementById("decrement");
         decrement.addEventListener("click", function () {
-            type("economyClass", false, 100);
+            type("economyClass", false);
         }
         )
-       function type(id, value, num){
+       function type(id, value){
             const category = document.getElementById(id).value;
             const increase = parseFloat(category);
             let price = increase;
