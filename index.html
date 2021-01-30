@@ -11,7 +11,7 @@
         rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -33,7 +33,9 @@
 
         <div class="booking-content">
             <h1>Cruise Queen</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book.</p>
         </div>
 
 
@@ -50,7 +52,7 @@
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="">
+                        <input class="inp-style" type="date" name="">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
@@ -61,21 +63,25 @@
                 <div>
                     <label for="">First Class ($150)</label>
                     <div class="d-flex justify-content-start">
-                    <input id="firstClass" class="inp-style inp-width" type="text" name="" value="0">
-                    <button id="increase" class="btn btn-default m-1 mt-2 mb-2 p-2"><i class="fas fa-plus-square"></i></button>
-                    <button id="decrease" class="btn btn-default m-1 mt-2 mb-2 p-2"><i class="far fa-minus-square"></i></button>
+                        <input id="firstClass" class="inp-style inp-width" type="text" name="" value="0">
+                        <button id="increase" class="btn btn-default m-1 mt-2 mb-2 p-2"><i
+                                class="fas fa-plus-square"></i></button>
+                        <button id="decrease" class="btn btn-default m-1 mt-2 mb-2 p-2"><i
+                                class="far fa-minus-square"></i></button>
                     </div>
                 </div>
-                
+
             </div>
-            
+
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
                     <div class="d-flex justify-content-center">
-                    <input id="secondClass" class="inp-style inp-width" type="text" name="" value="0">
-                    <button id="increment" class="btn btn-default m-1 mt-2 mb-2 p-2"><i class="fas fa-plus-square"></i></button>
-                    <button id="decrement" class="btn btn-default m-1 mt-2 mb-2 p-2"><i class="far fa-minus-square"></i></button>
+                        <input id="secondClass" class="inp-style inp-width" type="text" name="" value="0">
+                        <button id="increment" class="btn btn-default m-1 mt-2 mb-2 p-2"><i
+                                class="fas fa-plus-square"></i></button>
+                        <button id="decrement" class="btn btn-default m-1 mt-2 mb-2 p-2"><i
+                                class="far fa-minus-square"></i></button>
                     </div>
                 </div>
             </div>
@@ -113,59 +119,58 @@
 
     <script>
         const increase = document.getElementById("increase");
-        increase.addEventListener("click", function(){
-            items("firstClass", true, 150);
+        increase.addEventListener("click", function () {
+            type("firstClass", true, 150);
         })
+
         const decrease = document.getElementById("decrease");
-        decrease.addEventListener("click", function(){
-            items("firstClass", false, -150);
+        decrease.addEventListener("click", function () {
+             type("firstClass", false, 150);
         })
         const increment = document.getElementById("increment");
-        increment.addEventListener("click", function(){
-            items("secondClass", true, 100);
-            }
+        increment.addEventListener("click", function () {
+            type("secondClass", true, 100);
+        }
         )
         const decrement = document.getElementById("decrement");
-        decrement.addEventListener("click", function(){
-            items("secondClass", false, -100);
+        decrement.addEventListener("click", function () {
+            type("secondClass", false, 100);
         }
         )
-        function items(id, change, num){
-            const type = document.getElementById(id).value;
-            const price = parseFloat(type);
-            let newPrice = price;
-            if(change == true){
-                newPrice = price + 1;
+       function type(id, value, num){
+            const category = document.getElementById(id).value;
+            const increase = parseFloat(category);
+            let price = increase;
+            if(value == true){
+                price = increase + 1 ;
             }
-            if(change == false && price > 0){
-                newPrice = price - 1;
+            if(value == false && price>0){
+                price = increase - 1 ;
             }
-            
-            document.getElementById(id).value = newPrice;
-            
-            const subTotal = document.getElementById("subTotal").innerText;
-            const subtotal = parseFloat(subTotal);
-            const total = subtotal + num; 
-            if(total<0){
-                document.getElementById("subTotal").innerText = "0";
-                document.getElementById("finalTotal").innerText = "0";
-            }
-            else{
-                document.getElementById("subTotal").innerText = total;
-                const finalTax = total * 0.1;
-                document.getElementById("tax").innerText = finalTax;
-                document.getElementById("finalTotal").innerText = total + finalTax;
-            }
-            
+            document.getElementById(id).value = price;
 
-           
-        }
+            priceTotal();
+       }
+
+       function priceTotal(){
+       const first = document.getElementById("firstClass").value;
+       const firstCount = parseFloat(first);
+       const second = document.getElementById("secondClass").value;
+       const secondCount = parseFloat(second);
+       const final = firstCount * 150 + secondCount * 100;
+       document.getElementById("subTotal").innerText = final;
+
+       const tax = document.getElementById("subTotal").innerText;
+       const taxCount = tax * 0.1;
+       document.getElementById("tax").innerText = taxCount;
+       document.getElementById("finalTotal").innerText = final + taxCount;
+       }
 
         const submitBtn = document.getElementById("submitBtn");
-        submitBtn.addEventListener("click", function(){
+        submitBtn.addEventListener("click", function () {
             const notify = document.getElementById("finalTotal").innerText;
             alert("Your booking is confirmed..!\n\n" + " Total cost: " + notify);
-            
+
         })
     </script>
     <!--Thank You-->
